@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>User Registration</title>
+<!-- linking bootstrap : Goto browser and search "bootstrap 4 css cdn" Copy the link and pasted below -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<!-- Nav Bar taken from https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">User Login And Registration</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/userlogin}">Login</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/userregistration}">Registration</a></li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+		<div class="container">
+		<div class="row">
+			<!-- col-lg-6 : colum for large device,
+			-md : medium device,
+			-sm : small device,
+			card : to add border to the form -->
+			<div class=" col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1>Registration Form</h1>
+				<div class="card-body">
+					<!-- post mapping as /students -->
+					<form th:action="@{/register}" th:object="${user}" method="post">
+						<div class="form-group">
+							<!-- "*{....}" to bind the input to filed -->
+							<label>User Name</label> <input type="text"
+								name="name" class="form-control" th:field="*{name}"
+								placeholder="Enter Your Name" required autofocus="autofocus"/>
+						</div>
+						<div class="form-group">
+							<label>Password</label> <input type="text"
+								name="password" class="form-control" th:field="*{password}"
+								placeholder="Enter our Password" required autofocus="autofocus"/>
+						</div>
+						<div class="form-group">
+							<label>Your Age</label> <input type="number"
+								name="age" class="form-control" th:field="*{age}"
+								placeholder="Enter Your Age" required autofocus="autofocus"/>
+						</div>
+						<div class="form-group">
+							<label>User Email</label> <input type="text"
+								name="email" class="form-control" th:field="*{email}"
+								placeholder="Enter Your Email Address" required autofocus="autofocus"/>
+						</div>
+						<div class="form-group">
+							<label>Professional: </label> <input type="radio"
+								name="email" class="form-control" 
+								placeholder="Enter Your Email Address" required />
+						</div>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">Submit</button>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

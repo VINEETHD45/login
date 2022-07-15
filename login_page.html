@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Login User</title>
+<!-- linking bootstrap : Goto browser and search "bootstrap 4 css cdn" Copy the link and pasted below -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	
+</head>
+<body>
+<style>
+	#button:hover{
+	background-color: deepskyblue;
+	}
+	</style>
+	<!-- Nav Bar taken from https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">User Login And Registration</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/userlogin}">Login</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/userregistration}">Registration</a></li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="container">
+		<div class="row">
+			<!-- col-lg-6 : colum for large device,
+			-md : medium device,
+			-sm : small device,
+			card : to add border to the form -->
+			<div
+				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1>User Login</h1>
+				<div class="card-body">
+					<div id="message">
+					
+						<!-- unless means "else" condition from if...Else statement -->
+						<div th:unless="${error == null}" th:text="${error}" class="alert alert-danger"></div>
+						<div th:unless="${info == null}" th:text="${info}" class="alert alert-info"></div>
+					</div>
+					<!-- post mapping as /students -->
+					<form th:action="@{/userlogin}" th:object="${user}" method="post">
+						<div class="form-group">
+							<!-- "*{....}" to bind the input to filed -->
+							<label>Name</label> <input type="text" name="name"
+								class="form-control" th:field="*{name}"
+								placeholder="Enter Your User Name" required/>
+						</div>
+						<div class="form-group">
+							<label>Password</label> <input type="password" name="password"
+								class="form-control" th:field="*{password}"
+								placeholder="Please Enter Your Password" required />
+						</div>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary" id="button">Login</button>
+
+						</div>
+						<div>
+							Not Registered Yet? <a th:href="@{/userregistration}">Register</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
